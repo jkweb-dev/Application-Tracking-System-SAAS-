@@ -1,14 +1,29 @@
- import { Button } from "@/Components/ui/button"
- 
- const Home = () => {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <Button>
-        Click Me
-      </Button>
-    </div>
-  )
+import Navbar from "@/Components/Navbar"
+import Hero from "@/Components/Hero"
+import TrustBar from "@/Components/TrustBar"
+import Features from "@/Components/Feauture"
+import HowItWorks from "@/Components/HowitWorks"
+import PricingPreview from "@/Components/PricingPreview"
+import FAQ from "@/Components/FAQ"
+import FinalCTA from "@/Components/FinalActionTocall"
+import Footer from "@/Components/Footer"
+
+export default function Home(){
+
+return(
+
+<>
+<Navbar/>
+<Hero/>
+<TrustBar/>
+<Features/>
+<HowItWorks/>
+<PricingPreview/>
+<FAQ/>
+<FinalCTA/>
+<Footer/>
+</>
+
+)
+
 }
-
-
-export default Home
