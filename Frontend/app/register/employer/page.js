@@ -123,8 +123,7 @@ type==="checkbox"
 
 const handleSubmit= async (e) => {
 
-e.preventDefault();
-
+e.preventDefault()
 const valid=
 validateForm();
 
@@ -223,9 +222,7 @@ agree: false
 
 };
 
-if (loading) {
-  return <h1 className="text-4xl font-bold text center">Loading............</h1>
-}
+
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -584,6 +581,7 @@ errors.agree && (
             {/* Button */}
 
             <button
+            disabled = {loading}
               className="
               w-full
               bg-black
@@ -596,7 +594,7 @@ errors.agree && (
             "
             >
 
-              Create Account
+           {loading ? "Creating Account....." : "Register"}   
 
             </button>
 
