@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import Link from "next/link";
 
 export default function PricingPreview() {
 
@@ -125,13 +126,13 @@ className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-lg tran
 </div>
 
 {/* Button */}
-
+<Link   href="/register/employer">
 <button className="mt-6 w-full bg-blue-600 text-white py-2.5 rounded-xl hover:bg-blue-700 transition">
 
 Get Started
 
 </button>
-
+</Link>
 </div>
 
 ))}
