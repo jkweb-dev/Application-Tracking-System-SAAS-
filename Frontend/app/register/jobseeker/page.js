@@ -860,7 +860,7 @@ console.log(error)
 
             <Link
 
-              href="/login/job-seeker"
+              href="/login/jobseeker"
 
               className="text-blue-600 ml-1"
 

@@ -132,7 +132,7 @@ const registerJobSeeker = async (req,res)=>{
         {
 
 
-            expiresIn:"7d"
+            expiresIn:"1h"
 
 
         }

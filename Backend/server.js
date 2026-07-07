@@ -1,6 +1,7 @@
 import employerRegister from "./Routes/employer.js";
 import employerLogin from "./Routes/employerLogin.js";
 import jobseekerregister from "./Routes/jobseeker.js";
+import jobseekerLogin from "./Routes/jobseekerLogin.js";
 
 import express from "express";
 import dotenv from "dotenv";
@@ -24,6 +25,9 @@ app.use("/employer" , employerRegister)
 app.use("/employer" , employerLogin)
 
 app.use("/jobseeker" , jobseekerregister)
+
+
+app.use("/jobseeker" , jobseekerLogin)
 
 
 
