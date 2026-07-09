@@ -4,6 +4,7 @@ import jobseekerregister from "./Routes/jobseeker.js";
 import jobseekerLogin from "./Routes/jobseekerLogin.js";
 import verifyAuth from "./Routes/verify.js";
 import employerProfile from "./Routes/employerProfile.js";
+import jobs from "./Routes/jobs.js";
 
 import express from "express";
 import dotenv from "dotenv";
@@ -34,6 +35,8 @@ app.use("/jobseeker" , jobseekerLogin)
 app.use("/auth" , verifyAuth)
 
 app.use("/employer" , employerProfile)
+
+app.use("/jobs" , jobs)
 
 
 

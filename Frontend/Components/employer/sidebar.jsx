@@ -49,13 +49,13 @@ export default function Sidebar({ open, setOpen }) {
     const jobItems = [
 
         {
-            name: "Create Job",
-            path: "/employer/jobs/create"
+            name: "My Jobs",
+            path: "/employer/jobs"
         },
 
         {
-            name: "My Jobs",
-            path: "/employer/jobs"
+            name: "Create Jobs",
+            path: "/employer/jobs/create"
         },
 
         {
