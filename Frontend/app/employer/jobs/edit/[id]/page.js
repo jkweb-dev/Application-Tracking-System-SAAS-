@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState , useEffect } from "react";
+
 
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter , useParams } from "next/navigation";
 
 import JobHeader from "@/Components/employer/jobs/create/jobheader";
 import JobBasicInfo from "@/Components/employer/jobs/create/jobbasicinfo";
@@ -15,10 +16,17 @@ import JobCompensation from "@/Components/employer/jobs/create/jobcompansation";
 import JobActions from "@/Components/employer/jobs/create/jobactions";
 
 
-export default function CreateJobPage() {
+export default function EditJobPage() {
 
+
+    const params = useParams()
 
     const router = useRouter()
+
+    const id = params.id
+
+     const [loading,setLoading] = useState(false);
+
     const [errors, setErrors] = useState({});
     const [jobData,setJobData] = useState({
 
@@ -68,8 +76,7 @@ export default function CreateJobPage() {
 
 
 
-    const [loading,setLoading] = useState(false);
-
+   
 
 
 
@@ -118,6 +125,7 @@ export default function CreateJobPage() {
 
 
     };
+
 
 const validateForm = () => {
 
@@ -333,14 +341,13 @@ const validateForm = () => {
 
 
 
-    const handleSubmit = async () => {
+   const handleSubmit = async () => {
 
-        const valid = validateForm() ;
+    const valid = validateForm()
 
-        if (!valid) {
-            return ;
-        }
-
+    if (!valid) {
+        return ;
+    }
 
     try {
 
@@ -348,9 +355,9 @@ const validateForm = () => {
 
         const token = localStorage.getItem("token");
 
-        const response = await axios.post(
+        const response = await axios.put(
 
-            "http://localhost:5000/jobs/create",
+            `http://localhost:5000/jobs/${id}`,
 
             jobData,
 
@@ -366,15 +373,13 @@ const validateForm = () => {
 
         );
 
-        if (response.status === 201 || 200) {
-             toast.success(response.data.message);
+        toast.success(
 
-        console.log(response.data.job);
-        }
-       
+            response.data.message || "Job updated successfully."
 
-        // Later:
-        // router.push("/employer/jobs");
+        );
+
+        router.push("/employer/jobs");
 
     }
 
@@ -384,7 +389,7 @@ const validateForm = () => {
 
             const status = error.response.status;
 
-            const message = error.response.data.message;
+            const message = error.response?.data?.message;
 
             if (status === 401) {
 
@@ -394,18 +399,17 @@ const validateForm = () => {
 
                 router.push("/");
 
-                return ;
             }
 
             else if (status === 404) {
 
-                toast.error(message || "Resource not found");
+                toast.error(message || "Job not found");
 
             }
 
             else if (status === 500) {
 
-                toast.error(message || "Internal Server Error");
+                toast.error(message || "Server error");
 
             }
 
@@ -417,15 +421,9 @@ const validateForm = () => {
 
         }
 
-        else if (error.request) {
-
-            toast.error("Unable to connect to server.");
-
-        }
-
         else {
 
-            toast.error("Something went wrong.");
+            toast.error("Unable to connect to server");
 
         }
 
@@ -438,6 +436,104 @@ const validateForm = () => {
     }
 
 };
+
+
+
+
+const fetchJob = async () => {
+
+    try {
+
+        const token = localStorage.getItem("token");
+
+        const response = await axios.get(
+
+            `http://localhost:5000/jobs/${id}`,
+
+            {
+
+                headers: {
+
+                    Authorization: `Bearer ${token}`
+
+                }
+
+            }
+
+        );
+
+      const job = response.data.job;
+
+setJobData({
+
+    ...job,
+
+    deadline: job.deadline
+        ? job.deadline.split("T")[0]
+        : ""
+
+});
+
+    }
+
+    catch (error) {
+
+        if (error.response) {
+
+            const status = error.response.status;
+
+            const message = error.response?.data?.message;
+
+            if (status === 401) {
+
+                localStorage.removeItem("token");
+
+                toast.error(message || "Session expired");
+
+                router.push("/");
+
+            }
+
+            else if (status === 404) {
+
+                toast.error(message || "Job not found");
+
+            }
+
+            else if (status === 500) {
+
+                toast.error(message || "Server error");
+
+            }
+
+            else {
+
+                toast.error(message || "Something went wrong");
+
+            }
+
+        }
+
+        else {
+
+            toast.error("Unable to connect to server");
+
+        }
+
+    }
+
+};
+
+
+useEffect(() => {
+
+    if (id) {
+
+        fetchJob();
+
+    }
+
+}, [id]);
 
     return (
 
@@ -452,11 +548,10 @@ const validateForm = () => {
                 {/* Page Header */}
 
 
-                <JobHeader 
-                
-                title="Create Job"
+                <JobHeader  title="Edit Job"
 
-    subtitle="Post a new opportunity and reach the right candidates."/>
+    subtitle="Update your existing job posting."
+ />
 
 
 
@@ -566,7 +661,7 @@ const validateForm = () => {
 
                     handleSubmit={handleSubmit}
 
-                      buttonText="Create Job"
+                     buttonText="Save Changes"
 
                       
 

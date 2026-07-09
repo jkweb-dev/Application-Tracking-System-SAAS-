@@ -1,4 +1,7 @@
-export default function JobHeader(){
+export default function JobHeader({
+    title ,
+    subtitle
+}){
 
 
     return (
@@ -49,8 +52,7 @@ export default function JobHeader(){
 
                     >
 
-                        Create New Job
-
+                      {title}
                     </h1>
 
 
@@ -73,8 +75,7 @@ export default function JobHeader(){
 
                     >
 
-                        Create a new opportunity and find the right
-                        talent for your company.
+                       {subtitle}
 
                     </p>
 

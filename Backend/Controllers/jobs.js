@@ -218,7 +218,7 @@ export const getSingleJob = async(req,res)=>{
 
 
 export const updateJob = async(req,res)=>{
-
+console.log("Route Hitted")
     try{
 
         const job = await Job.findOne({

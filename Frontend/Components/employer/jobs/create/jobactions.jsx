@@ -2,8 +2,9 @@ export default function JobActions({
 
     loading,
 
-    handleSubmit
+    handleSubmit,
 
+    buttonText
 }){
 
 
@@ -151,19 +152,11 @@ export default function JobActions({
                 >
 
 
-                    {
+                   
 
-                        loading
+                       {buttonText} 
 
-                        ?
-
-                        "Publishing..."
-
-                        :
-
-                        "Publish Job"
-
-                    }
+                    
 
 
 
