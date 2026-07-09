@@ -50,7 +50,7 @@ export default function Sidebar({ open, setOpen }) {
 
         {
             name: "My Jobs",
-            path: "/employer/jobs"
+            path: "/employer/jobs/my_jobs"
         },
 
         {
