@@ -440,6 +440,17 @@ export default function JobCard({
 
                         <button
 
+                        
+                            onClick={()=>
+
+
+                                router.push(
+
+                                    `/employer/jobs/view/${job._id}`
+
+                                )}
+
+
                             className="
                             
                             px-4
