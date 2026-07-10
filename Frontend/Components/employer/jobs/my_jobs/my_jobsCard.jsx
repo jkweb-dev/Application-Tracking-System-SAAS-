@@ -7,7 +7,9 @@ import { useRouter } from "next/navigation";
 
 export default function JobCard({
 
-    job
+    job , 
+
+    handleDeleteClick
 
 }){
 
@@ -325,9 +327,7 @@ export default function JobCard({
 
                             <p className="font-semibold text-gray-800">
 
-                                {new Date(job.deadline)
-                                .toLocaleDateString()}
-
+                               {job.deadline.split("T")[0]}
                             </p>
 
 
@@ -533,9 +533,11 @@ export default function JobCard({
 
                         <button
 
+                        onClick={() => handleDeleteClick(job)}
+
                             className="
                             
-                            px-4
+                            px-4 </div>
                             
                             py-2
                             

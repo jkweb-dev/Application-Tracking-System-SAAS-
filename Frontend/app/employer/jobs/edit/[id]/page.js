@@ -379,7 +379,7 @@ const validateForm = () => {
 
         );
 
-        router.push("/employer/jobs");
+        router.push("/employer/jobs/my_jobs");
 
     }
 

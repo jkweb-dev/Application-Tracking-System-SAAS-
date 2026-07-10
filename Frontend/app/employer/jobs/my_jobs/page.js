@@ -18,6 +18,8 @@ import JobCard from "@/Components/employer/jobs/my_jobs/my_jobsCard";
 
 import EmptyJobs from "@/Components/employer/jobs/my_jobs/my_jobsEmpty";
 
+import ConfirmationDialog from "@/Components/confirmationDialogBox";
+
 
 
 
@@ -37,7 +39,184 @@ export default function MyJobsPage(){
 
     const [loading,setLoading] = useState(true);
 
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
 
+
+const [selectedJob, setSelectedJob] = useState(null);
+
+
+const [deleteLoading, setDeleteLoading] = useState(false);
+
+
+const handleDeleteClick = (job)=>{
+
+
+    setSelectedJob(job);
+
+
+    setOpenDeleteDialog(true);
+
+
+};
+
+
+const handleDeleteJob = async()=>{
+
+
+    try{
+
+
+        setDeleteLoading(true);
+
+
+        const token = localStorage.getItem("token");
+
+
+
+        await axios.delete(
+
+            `http://localhost:5000/jobs/${selectedJob._id}`,
+
+            {
+
+                headers:{
+
+                    Authorization:`Bearer ${token}`
+
+                }
+
+            }
+
+        );
+
+
+
+        
+        toast.success("Job deleted successfully");
+
+
+
+        // remove job from UI
+
+       setJobs((prev)=>
+
+            prev.filter(
+
+                (job)=>
+
+                job._id !== selectedJob._id
+
+            )
+
+        );
+
+
+        setOpenDeleteDialog(false);
+
+
+        setSelectedJob(null);
+
+
+
+    }
+
+
+    catch(error){
+
+
+         if(error.response){
+
+
+                const status = error.response.status;
+
+
+                const message = error.response?.data?.message;
+
+
+
+                if(status === 401){
+
+
+                    localStorage.removeItem("token");
+
+
+                    toast.error(
+                        message || "Session expired"
+                    );
+
+
+                    router.push("/");
+
+
+                }
+
+
+
+                else if(status === 404){
+
+
+                    toast.error(
+                        message || "Jobs not found"
+                    );
+
+
+                }
+
+
+
+                else if(status === 500){
+
+
+                    toast.error(
+                        message || "Server error"
+                    );
+
+
+                }
+
+
+
+                else{
+
+
+                    toast.error(
+                        message || "Something went wrong"
+                    );
+
+
+                }
+
+
+
+            }
+
+
+
+            else{
+
+
+                toast.error(
+                    "Unable to connect to server"
+                );
+
+
+            }
+
+
+
+    }
+
+
+    finally{
+
+
+        setDeleteLoading(false);
+
+
+    }
+
+
+};
 
 
     const fetchJobs = async()=>{
@@ -338,6 +517,8 @@ console.log(error)
 
                                         job={job}
 
+                                        handleDeleteClick = {handleDeleteClick}
+
                                     />
 
 
@@ -360,6 +541,48 @@ console.log(error)
 
             </div>
 
+
+
+
+
+<ConfirmationDialog
+
+    open={openDeleteDialog}
+
+
+    title="Delete Job"
+
+
+    message={
+
+        `Are you sure you want to delete 
+        ${selectedJob?.jobTitle}? 
+        This action cannot be undone.`
+
+    }
+
+
+    confirmText="Delete"
+
+
+    cancelText="Cancel"
+
+
+    loading={deleteLoading}
+
+
+    onConfirm={handleDeleteJob}
+
+
+    onCancel={()=>{
+
+        setOpenDeleteDialog(false);
+
+        setSelectedJob(null);
+
+    }}
+
+/>
 
 
 
