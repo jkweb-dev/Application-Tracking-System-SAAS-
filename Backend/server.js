@@ -5,6 +5,8 @@ import jobseekerLogin from "./Routes/jobseekerLogin.js";
 import verifyAuth from "./Routes/verify.js";
 import employerProfile from "./Routes/employerProfile.js";
 import jobs from "./Routes/jobs.js";
+import changePassword from "./Routes/change-password.js";
+import deleteAccount from "./Routes/delete-account.js";
 
 import express from "express";
 import dotenv from "dotenv";
@@ -37,6 +39,11 @@ app.use("/auth" , verifyAuth)
 app.use("/employer" , employerProfile)
 
 app.use("/jobs" , jobs)
+
+app.use("/employer" , changePassword)
+
+app.use("/employer" , deleteAccount)
+
 
 
 
