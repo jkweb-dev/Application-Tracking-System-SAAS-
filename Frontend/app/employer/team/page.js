@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 import TeamHeader from "@/Components/employer/team/My_team/header";
 import TeamMemberList from "@/Components/employer/team/My_team/Team_MemberList";
+import ConfirmationDialog from "@/Components/confirmationDialogBox";
 
 
 export default function TeamPage(){
@@ -20,6 +21,253 @@ export default function TeamPage(){
 
     const [loading,setLoading] = useState(false);
 
+    const [deleteDialogOpen,setDeleteDialogOpen] = useState(false);
+
+const [selectedMember,setSelectedMember] = useState(null);
+
+const handleDeleteClick = (member)=>{
+
+    setSelectedMember(member);
+
+    setDeleteDialogOpen(true);
+
+};
+
+
+const handleDelete = async()=>{
+
+
+    try{
+
+
+        setLoading(true);
+
+
+
+        const token = localStorage.getItem("token");
+
+
+
+        const response = await axios.delete(
+
+            `http://localhost:5000/employer/team/${selectedMember._id}`,
+
+            {
+
+                headers:{
+
+                    Authorization:`Bearer ${token}`
+
+                }
+
+            }
+
+        );
+
+
+
+        toast.success(
+
+            response.data.message ||
+
+            "Team member deleted successfully"
+
+        );
+
+
+
+        setMembers((prev)=>
+
+            prev.filter(
+
+                (member)=>
+
+                    member._id !== selectedMember._id
+
+            )
+
+        );
+
+
+
+        setDeleteDialogOpen(false);
+
+        setSelectedMember(null);
+
+
+
+    }
+
+
+
+    catch(error){
+
+
+        console.log(error);
+
+
+
+        if(error.response){
+
+
+
+            const status = error.response.status;
+
+
+            const message =
+
+                error.response.data?.message;
+
+
+
+
+
+            if(status === 400){
+
+
+                toast.error(
+
+                    message ||
+
+                    "Invalid request"
+
+                );
+
+
+            }
+
+
+
+
+
+            else if(status === 401){
+
+
+                localStorage.removeItem("token");
+
+
+
+                toast.error(
+
+                    message ||
+
+                    "Session expired. Please login again"
+
+                );
+
+
+
+                router.push("/");
+
+
+            }
+
+
+
+
+
+            else if(status === 403){
+
+
+                toast.error(
+
+                    message ||
+
+                    "You are not authorized to perform this action"
+
+                );
+
+
+            }
+
+
+
+
+
+            else if(status === 404){
+
+
+                toast.error(
+
+                    message ||
+
+                    "Team member not found"
+
+                );
+
+
+            }
+
+
+
+
+
+            else if(status === 500){
+
+
+                toast.error(
+
+                    message ||
+
+                    "Server error. Please try again later"
+
+                );
+
+
+            }
+
+
+
+
+
+            else{
+
+
+                toast.error(
+
+                    message ||
+
+                    "Something went wrong"
+
+                );
+
+
+            }
+
+
+
+        }
+
+
+
+        else{
+
+
+            toast.error(
+
+                "Unable to connect to server"
+
+            );
+
+
+        }
+
+
+
+    }
+
+
+
+    finally{
+
+
+        setLoading(false);
+
+
+    }
+
+
+};
 
 
    const fetchMembers = async()=>{
@@ -279,6 +527,8 @@ export default function TeamPage(){
 
                     loading={loading}
 
+                    handleDeleteClick = {handleDeleteClick}
+
                 />
 
 
@@ -287,6 +537,32 @@ export default function TeamPage(){
             </div>
 
 
+
+<ConfirmationDialog
+
+    open={deleteDialogOpen}
+
+    title="Delete Team Member"
+
+    message={`Are you sure you want to delete ${selectedMember?.firstName} ${selectedMember?.lastName}? This action cannot be undone.`}
+
+    confirmText="Delete"
+
+    cancelText="Cancel"
+
+    loading={loading}
+
+    onConfirm={handleDelete}
+
+    onCancel={()=>{
+
+        setDeleteDialogOpen(false);
+
+        setSelectedMember(null);
+
+    }}
+
+/>
         </div>
 
 

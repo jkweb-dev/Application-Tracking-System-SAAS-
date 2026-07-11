@@ -5,7 +5,9 @@ import { useRouter } from "next/navigation";
 
 export default function TeamMemberCard({
 
-    member
+    member ,
+
+    handleDeleteClick
 
 }) {
 
@@ -394,6 +396,7 @@ export default function TeamMemberCard({
 
                 <button
 
+onClick={() => handleDeleteClick(member)}
 
                     className="
 

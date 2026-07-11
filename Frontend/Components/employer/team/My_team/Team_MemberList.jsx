@@ -5,7 +5,9 @@ export default function TeamMemberList({
 
     members,
 
-    loading
+    loading ,
+
+    handleDeleteClick
 
 }) {
 
@@ -227,6 +229,8 @@ export default function TeamMemberList({
                         key={member._id}
 
                         member={member}
+
+                        handleDeleteClick = {handleDeleteClick}
 
                     />
 
