@@ -2,11 +2,59 @@
 
 import { useState } from "react";
 
+import ConfirmationDialog from "../confirmationDialogBox";
+
+import toast from "react-hot-toast";
+
+import { useRouter } from "next/navigation";
 
 export default function TopNavbar({ user, setSidebarOpen }) {
 
-
+const router = useRouter()
     const [openProfile, setOpenProfile] = useState(false);
+
+    const [logoutDialogOpen,setLogoutDialogOpen] = useState(false);
+
+const [loading,setLoading] = useState(false);
+
+const handleLogout = ()=>{
+
+
+    try{
+
+
+        setLoading(true);
+
+
+        localStorage.removeItem("token");
+
+
+        toast.success(
+
+            "Logged out successfully"
+
+        );
+
+
+        router.replace("/");
+
+
+
+    }
+
+
+    finally{
+
+
+        setLoading(false);
+
+        setLogoutDialogOpen(false);
+
+
+    }
+
+
+};
 
 
 
@@ -491,6 +539,8 @@ export default function TopNavbar({ user, setSidebarOpen }) {
 
                                 <button
 
+                                onClick={() => setLogoutDialogOpen(true)}
+
                                     className="
                                     
                                     w-full
@@ -531,6 +581,26 @@ export default function TopNavbar({ user, setSidebarOpen }) {
 
             </div>
 
+
+<ConfirmationDialog
+
+    open={logoutDialogOpen}
+
+    title="Logout"
+
+    message="Are you sure you want to logout from your account?"
+
+    confirmText="Logout"
+
+    cancelText="Cancel"
+
+    loading={loading}
+
+    onConfirm={handleLogout}
+
+    onCancel={()=>setLogoutDialogOpen(false)}
+
+/>
 
         </header>
 
