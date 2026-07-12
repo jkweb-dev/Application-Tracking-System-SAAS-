@@ -327,7 +327,7 @@ export default function Navbar() {
 
                     <Link
 
-                      href="/login/candidate"
+                      href="/login/jobseeker"
 
                       className="block rounded-lg p-2 hover:bg-slate-100"
 
@@ -336,6 +336,22 @@ export default function Navbar() {
                       Candidate Login
 
                     </Link>
+
+                    
+                    <Link
+
+                      href="/login/team_member"
+
+                      className="block rounded-lg p-2 hover:bg-slate-100"
+
+                    >
+
+                     Team Member Login
+
+                    </Link>
+
+
+
 
                   </div>
 
@@ -391,7 +407,7 @@ export default function Navbar() {
 
                     <Link
 
-                      href="/register/candidate"
+                      href="/register/jobseeker"
 
                       className="block rounded-lg p-2 hover:bg-slate-100"
 

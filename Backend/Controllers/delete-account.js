@@ -1,5 +1,6 @@
 import Job from "../Models/jobs.js";
 import Employer from "../Models/employer.js";
+import TeamMember from "../Models/Team_Member.js";
 
 
 export const deleteAccount = async(req,res)=>{
@@ -9,6 +10,7 @@ export const deleteAccount = async(req,res)=>{
 
 
         const employerId = req.user.id;
+        const role = req.user.role
 
 
 
@@ -28,6 +30,15 @@ export const deleteAccount = async(req,res)=>{
 
         }
 
+          if (role === "recruiter" || role === "hiring_manager") {
+               return res.status(403).json({
+
+                message:"You are not allowed to delete Company Account"
+
+            });
+        }
+
+
 
 
 
@@ -42,7 +53,9 @@ export const deleteAccount = async(req,res)=>{
 
 
 
-
+await TeamMember.deleteMany({
+    EmployerId : employerId
+})
 
 
         // Delete employer account/profile

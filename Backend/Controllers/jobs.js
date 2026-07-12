@@ -9,6 +9,18 @@ export const createJob = async (req,res)=>{
 
         const employer = await Employer.findById(req.user.id);
 
+           if(req.user.role === "hiring_manager"){
+
+
+            return res.status(403).json({
+
+                message:"You are not allowed to Create Job"
+
+            });
+
+
+        }
+
         if(!employer){
 
             return res.status(404).json({
@@ -221,6 +233,21 @@ export const updateJob = async(req,res)=>{
 
     try{
 
+
+         if(req.user.role === "hiring_manager"){
+
+
+            return res.status(403).json({
+
+                message:"You are not allowed to Create Job"
+
+            });
+
+
+        }
+
+        
+
         const job = await Job.findOne({
 
             _id:req.params.id,
@@ -275,6 +302,19 @@ export const updateJob = async(req,res)=>{
 export const deleteJob = async(req,res)=>{
 
     try{
+
+         if(req.user.role !== "employer"){
+
+
+            return res.status(403).json({
+
+                message:"You are not allowed to Delete Job"
+
+            });
+
+
+        }
+
 
         const job = await Job.findOne({
 

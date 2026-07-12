@@ -58,11 +58,7 @@ export default function Sidebar({ open, setOpen }) {
             path: "/employer/jobs/create"
         },
 
-        {
-            name: "Edit Jobs",
-            path: "/employer/jobs/edit"
-        }
-
+      
     ];
 
 

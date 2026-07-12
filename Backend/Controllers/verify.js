@@ -51,15 +51,31 @@ export const verifyUser = async (req, res) => {
         }
 
 
-        else if (
-
-            decoded.role === "jobseeker"
-
-        ) {
+        else if ( decoded.role === "jobseeker" ) {
 
             user = await JobSeeker.findById(
 
                 decoded.id
+
+            ).select("-password");
+
+        }
+
+          else if ( decoded.role === "recruiter" ) {
+
+            user = await Employer.findById(
+
+                decoded. employerId
+
+            ).select("-password");
+
+        }
+
+         else if ( decoded.role === "hiring_manager" ) {
+
+            user = await Employer.findById(
+
+                decoded. employerId
 
             ).select("-password");
 

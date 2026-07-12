@@ -480,6 +480,8 @@ const handleLogout = ()=>{
 
                                 <button
 
+                                onClick={() => router.push("/employer/profile")}
+
                                     className="
                                     
                                     w-full
@@ -508,6 +510,8 @@ const handleLogout = ()=>{
 
 
                                 <button
+
+                                 onClick={() => router.push("/employer/settings")}
 
                                     className="
                                     

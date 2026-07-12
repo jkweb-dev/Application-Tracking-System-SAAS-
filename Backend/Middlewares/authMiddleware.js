@@ -36,8 +36,15 @@ const protect = (req,res,next)=>{
         );
 
 
-
+if(decoded.role === "employer"){
         req.user = decoded;
+}else if(decoded.role === "hiring_manager" || decoded.role ===  "recruiter"){
+    req.user = {
+        _id : decoded.id ,
+        id : decoded.employerId ,
+        role : decoded.role
+    }
+}
 
 
 

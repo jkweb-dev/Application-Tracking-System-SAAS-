@@ -14,17 +14,7 @@ export const getTeamMembers = async(req,res)=>{
 
         // Make sure logged in user is employer
 
-        if(req.user.role !== "employer"){
-
-
-            return res.status(403).json({
-
-                message:"You are not allowed to view team members"
-
-            });
-
-
-        }
+        
 
 
 
@@ -455,17 +445,7 @@ export const getTeamMember = async(req,res)=>{
 
 
 
-        if(req.user.role !== "employer"){
-
-
-            return res.status(403).json({
-
-                message:"You are not allowed to view this member"
-
-            });
-
-
-        }
+     
 
 
 

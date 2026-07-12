@@ -9,6 +9,7 @@ import changePassword from "./Routes/change-password.js";
 import deleteAccount from "./Routes/delete-account.js";
 import Team_Member from "./Routes/Team_Member.js";
 import getTeamMember from "./Routes/getTeam.js";
+import memberLogin from "./Routes/Team_MemberLogin.js";
 
 import express from "express";
 import dotenv from "dotenv";
@@ -49,6 +50,10 @@ app.use("/employer" , deleteAccount)
 app.use("/employer" , Team_Member)
 
 app.use("/employer" , getTeamMember)
+
+app.use("/team" , memberLogin)
+
+
 
 
 

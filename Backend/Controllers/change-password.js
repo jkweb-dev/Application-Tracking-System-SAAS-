@@ -8,6 +8,7 @@ export const changePassword = async(req,res)=>{
 
 
         const userId = req.user.id;
+        const role = req.user.role
 
 
 
@@ -20,6 +21,13 @@ export const changePassword = async(req,res)=>{
         } = req.body;
 
 
+        if (role === "recruiter" || role === "hiring_manager") {
+               return res.status(403).json({
+
+                message:"You are not allowed to change Password Of Company"
+
+            });
+        }
 
 
 

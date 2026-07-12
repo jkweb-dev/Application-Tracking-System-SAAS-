@@ -9,6 +9,7 @@ import Employer from "../Models/employer.js";
 export const getEmployerProfile = async(req,res)=>{
 
 
+    
     try{
 
 
@@ -83,6 +84,16 @@ export const updateEmployerProfile = async(req,res)=>{
             req.user.id
 
         );
+
+
+          if (req.user.role === "recruiter" || req.user.role === "hiring_manager") {
+               return res.status(403).json({
+
+                message:"You are not allowed to edit Company Profile"
+
+            });
+        }
+
 
 
 
