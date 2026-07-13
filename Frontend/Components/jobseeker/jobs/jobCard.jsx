@@ -239,7 +239,7 @@ export default function JobCard({
 
                 <Link
 
-                    href={`/jobseeker/jobs/${job._id}`}
+                    href={`/jobseeker/job/${job._id}`}
 
                     className="
                         inline-flex

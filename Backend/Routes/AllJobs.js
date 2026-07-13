@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getAllJobs } from "../Controllers/AllJobs.js";
+import { getAllJobs, getSingleJob } from "../Controllers/AllJobs.js";
 
 
 import protect from "../Middlewares/authMiddleware.js";
@@ -17,6 +17,16 @@ router.get(
     protect,
 
     getAllJobs
+
+);
+
+router.get(
+
+    "/jobs/:id",
+
+    protect,
+
+   getSingleJob
 
 );
 
