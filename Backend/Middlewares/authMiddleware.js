@@ -44,6 +44,8 @@ if(decoded.role === "employer"){
         id : decoded.employerId ,
         role : decoded.role
     }
+}else if (decoded.role === "jobseeker") {
+    req.user = decoded
 }
 
 

@@ -166,7 +166,7 @@ export default function Protected({
     if (!user) return null;
 
 
-    return children(user);
+    return children;
 
 
 }
