@@ -11,11 +11,7 @@ export default function RegisterJobSeeker() {
     firstName: "",
     lastName: "",
     email: "",
-    phone: "",
-    location: "",
-    currentRole: "",
-    experience: "",
-    skill: "",
+   
     password: "",
     confirmPassword: "",
     agree: false
@@ -90,40 +86,9 @@ setErrors({})
 
     }
 
-    if (!formData.phone.trim()) {
+   
 
-      newErrors.phone =
-        "Phone number is required";
-
-    }
-
-    if (!formData.location.trim()) {
-
-      newErrors.location =
-        "Location is required";
-
-    }
-
-    if (!formData.currentRole) {
-
-      newErrors.currentRole =
-        "Please select role";
-
-    }
-
-    if (!formData.experience) {
-
-      newErrors.experience =
-        "Please select experience";
-
-    }
-
-    if (!formData.skill) {
-
-      newErrors.skill =
-        "Please select skill";
-
-    }
+  
 
     if (!formData.password) {
 
@@ -454,271 +419,19 @@ console.log(error)
 
             {/* Phone */}
 
-            <div>
-
-              <input
-
-                type="text"
-
-                name="phone"
-
-                placeholder="Phone Number"
-
-                value={formData.phone}
-
-                onChange={handleChange}
-
-                className="w-full border rounded-xl px-4 py-3"
-
-              />
-
-              {
-
-                errors.phone &&
-
-                <p className="text-red-500 text-sm mt-1">
-
-                  {errors.phone}
-
-                </p>
-
-              }
-
-            </div>
+          
 
 
             {/* Location */}
 
-            <div>
+          
 
-              <input
 
-                type="text"
-
-                name="location"
-
-                placeholder="Location"
-
-                value={formData.location}
-
-                onChange={handleChange}
-
-                className="w-full border rounded-xl px-4 py-3"
-
-              />
-
-              {
-
-                errors.location &&
-
-                <p className="text-red-500 text-sm mt-1">
-
-                  {errors.location}
-
-                </p>
-
-              }
-
-            </div>
-
-
-            {/* Current Role */}
-
-            <select
-
-              name="currentRole"
-
-              value={formData.currentRole}
-
-              onChange={handleChange}
-
-              className="w-full border rounded-xl px-4 py-3"
-
-            >
-
-              <option value="">
-
-                Select Current Role
-
-              </option>
-
-              <option value="Frontend Developer">
-
-                Frontend Developer
-
-              </option>
-
-              <option value="Backend Developer">
-
-                Backend Developer
-
-              </option>
-
-              <option value="Full Stack Developer">
-
-                Full Stack Developer
-
-              </option>
-
-              <option value="UI Designer">
-
-                UI Designer
-
-              </option>
-
-              <option value="Student">
-
-                Student
-
-              </option>
-
-            </select>
-             {
-
-                errors.currentRole &&
-
-                <p className="text-red-500 text-sm mt-1">
-
-                  {errors.currentRole}
-
-                </p>
-
-              }
-
-
-
-
-            {/* Experience */}
-
-            <select
-
-              name="experience"
-
-              value={formData.experience}
-
-              onChange={handleChange}
-
-              className="w-full border rounded-xl px-4 py-3"
-
-            >
-
-              <option value="">
-
-                Select Experience
-
-              </option>
-
-              <option value="Fresher">
-
-                Fresher
-
-              </option>
-
-              <option value="1-2 Years">
-
-                1-2 Years
-
-              </option>
-
-              <option value="3-5 Years">
-
-                3-5 Years
-
-              </option>
-
-              <option value="5+ Years">
-
-                5+ Years
-
-              </option>
-
-            </select>
-
-             {
-
-                errors.experience &&
-
-                <p className="text-red-500 text-sm mt-1">
-
-                  {errors.experience}
-
-                </p>
-
-              }
-
+           
 
             {/* Skill */}
 
-            <select
-
-              name="skill"
-
-              value={formData.skill}
-
-              onChange={handleChange}
-
-              className="w-full border rounded-xl px-4 py-3"
-
-            >
-
-              <option value="">
-
-                Select Skill
-
-              </option>
-
-              <option value="React">
-
-                React
-
-              </option>
-
-              <option value="Next.js">
-
-                Next.js
-
-              </option>
-
-              <option value="Node.js">
-
-                Node.js
-
-              </option>
-
-              <option value="Express">
-
-                Express
-
-              </option>
-
-              <option value="MongoDB">
-
-                MongoDB
-
-              </option>
-
-              <option value="JavaScript">
-
-                JavaScript
-
-              </option>
-
-            </select>
-             {
-
-                errors.skill &&
-
-                <p className="text-red-500 text-sm mt-1">
-
-                  {errors.skill}
-
-                </p>
-
-              }
-
-
-
-            {/* Password */}
+          
 
             <div>
 

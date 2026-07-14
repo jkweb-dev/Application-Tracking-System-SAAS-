@@ -21,16 +21,6 @@ const registerJobSeeker = async (req,res)=>{
 
             email,
 
-            phone,
-
-            location,
-
-            currentRole,
-
-            experience,
-
-            skill,
-
             password
 
 
@@ -89,16 +79,6 @@ const registerJobSeeker = async (req,res)=>{
             lastName,
 
             email,
-
-            phone,
-
-            location,
-
-            currentRole,
-
-            experience,
-
-            skill,
 
             password: hashedPassword
 

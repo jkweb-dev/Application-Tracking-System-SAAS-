@@ -34,49 +34,6 @@ const jobSeekerSchema = new mongoose.Schema(
     },
 
 
-    phone: {
-
-        type: String,
-
-        required: true
-
-    },
-
-
-    location: {
-
-        type: String,
-
-        required: true
-
-    },
-
-
-    currentRole: {
-
-        type: String,
-
-        required: true
-
-    },
-
-
-    experience: {
-
-        type: String,
-
-        required: true
-
-    },
-
-
-    skill: {
-
-        type: String,
-
-        required: true
-
-    },
 
 
     password: {
