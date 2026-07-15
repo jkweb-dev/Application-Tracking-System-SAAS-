@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
 
         cb(
             null,
-            "uploads/resumes"
+            "Uploads/Resumes"
         );
 
     },
@@ -43,12 +43,16 @@ const storage = multer.diskStorage({
 
 
 
-const fileFilter = (req,file,cb)=>{
+
+
+const fileFilter=(req,file,cb)=>{
 
 
     if(file.mimetype === "application/pdf"){
 
+
         cb(null,true);
+
 
     }
 
@@ -56,7 +60,9 @@ const fileFilter = (req,file,cb)=>{
 
 
         const error = new Error(
+
             "Only PDF files are allowed"
+
         );
 
 
@@ -65,10 +71,14 @@ const fileFilter = (req,file,cb)=>{
 
         cb(error,false);
 
+
     }
 
 
 };
+
+
+
 
 
 
@@ -92,7 +102,10 @@ const upload = multer({
 
 
 
-const uploadResume = (req,res,next)=>{
+
+
+
+const uploadResume=(req,res,next)=>{
 
 
     upload.single("resume")(req,res,(error)=>{
@@ -110,11 +123,13 @@ const uploadResume = (req,res,next)=>{
                     success:false,
 
                     message:
-                    "File size must be less than 5MB"
+                    "Resume size must be less than 5MB"
 
                 });
 
+
             }
+
 
 
 
@@ -131,7 +146,10 @@ const uploadResume = (req,res,next)=>{
 
                 });
 
+
             }
+
+
 
 
 
@@ -150,6 +168,8 @@ const uploadResume = (req,res,next)=>{
 
 
 
+
+
         next();
 
 
@@ -157,6 +177,7 @@ const uploadResume = (req,res,next)=>{
 
 
 };
+
 
 
 

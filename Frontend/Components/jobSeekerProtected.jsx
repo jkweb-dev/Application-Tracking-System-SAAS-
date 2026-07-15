@@ -41,6 +41,8 @@ export default function Protected({
 
             if (!token) {
 
+                toast.error("No Token Provided")
+
                 router.push("/");
 
                 return;

@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createProfile } from "../Controllers/JobSeekerProfile.js";
+import { createProfile , getProfile, updateProfile } from "../Controllers/JobSeekerProfile.js";
 
 
 import protect from "../Middlewares/authMiddleware.js";
@@ -28,7 +28,27 @@ router.post(
 
 );
 
+router.get(
 
+    "/profile",
+
+    protect,
+
+  getProfile
+
+);
+
+router.put(
+
+    "/profile",
+
+    protect,
+
+    uploadResume,
+
+    updateProfile
+
+);
 
 
 

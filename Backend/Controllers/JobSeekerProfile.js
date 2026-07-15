@@ -1,4 +1,5 @@
 import JobSeekerProfile from "../Models/JobSeekerProfile.js";
+import fs from "fs"
 
 
 
@@ -114,6 +115,8 @@ export const createProfile = async (req, res) => {
 
                 originalName: req.file.originalname,
 
+                path : req.file.path,
+
                 uploadedAt: new Date()
 
             },
@@ -153,5 +156,288 @@ export const createProfile = async (req, res) => {
         });
 
     }
+
+};
+
+
+
+
+
+
+
+
+
+export const getProfile = async (req, res) => {
+console.log("Route Hitted")
+    try {
+
+
+        if(req.user.role !== "jobseeker"){
+
+            return res.status(403).json({
+
+                success:false,
+
+                message:"Access denied"
+
+            });
+
+        }
+
+
+
+        const profile = await JobSeekerProfile.findOne({
+
+            userId:req.user.id
+
+        });
+
+
+
+        if(!profile){
+
+            return res.status(404).json({
+
+                success:false,
+
+                message:"Profile not found"
+
+            });
+
+        }
+
+
+
+        return res.status(200).json({
+
+            success:true,
+
+            profile
+
+        });
+
+
+    }
+    catch(error){
+
+
+        console.log(error);
+
+
+
+        return res.status(500).json({
+
+            success:false,
+
+            message:"Internal server error"
+
+        });
+
+
+    }
+
+};
+
+
+
+export const updateProfile = async (req,res)=>{
+
+    try{
+
+
+        if(req.user.role !== "jobseeker"){
+
+
+            return res.status(403).json({
+
+                success:false,
+
+                message:"Access denied"
+
+            });
+
+        }
+
+
+
+
+
+        const userId = req.user.id;
+
+
+
+
+
+        const profileData = JSON.parse(
+
+            req.body.profile
+
+        );
+
+
+
+
+
+
+        const profile = await JobSeekerProfile.findOne({
+
+            userId
+
+        });
+
+
+
+
+
+
+        if(!profile){
+
+
+            return res.status(404).json({
+
+                success:false,
+
+                message:"Profile not found"
+
+            });
+
+
+        }
+
+
+
+
+
+
+
+
+
+        // Update normal fields
+
+        Object.assign(
+
+            profile,
+
+            profileData
+
+        );
+
+
+
+
+
+
+
+
+
+        // If new resume uploaded
+
+      if(req.file){
+
+
+
+    // Delete old resume
+
+    if(profile.resume?.path){
+
+
+        fs.unlink(
+
+            profile.resume.path,
+
+            (error)=>{
+
+
+                if(error){
+
+                    console.log(
+                        "Old resume deletion failed",
+                        error.message
+                    );
+
+                }
+
+
+            }
+
+        );
+
+
+    }
+
+
+
+
+
+
+    // Save new resume
+
+
+    profile.resume = {
+
+
+        filename:req.file.filename,
+
+
+        originalName:req.file.originalname,
+
+
+        path:req.file.path,
+
+
+        uploadedAt:new Date()
+
+
+    };
+
+
+}
+
+
+
+
+
+        await profile.save();
+
+
+
+
+
+
+
+        return res.status(200).json({
+
+            success:true,
+
+            message:"Profile updated successfully",
+
+            profile
+
+        });
+
+
+
+
+
+    }
+
+    catch(error){
+
+
+        console.log(error);
+
+
+
+        return res.status(500).json({
+
+            success:false,
+
+            message:"Internal server error"
+
+        });
+
+
+    }
+
 
 };

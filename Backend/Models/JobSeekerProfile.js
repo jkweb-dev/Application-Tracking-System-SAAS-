@@ -126,6 +126,12 @@ const resumeSchema = new mongoose.Schema(
 
         },
 
+        path : {
+
+            type: String
+
+        },
+
         uploadedAt: {
 
             type: Date
