@@ -1,6 +1,6 @@
 import express from "express";
 
-import { applyJob } from "../Controllers/Application.js";
+import { applyJob, getMyApplications } from "../Controllers/Application.js";
 
 import protect from "../Middlewares/authMiddleware.js";
 
@@ -17,6 +17,16 @@ router.post(
     protect ,
 
     applyJob
+
+);
+
+router.get(
+
+    "/applications",
+
+    protect ,
+
+    getMyApplications
 
 );
 

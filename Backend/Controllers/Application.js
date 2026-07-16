@@ -191,3 +191,97 @@ export const applyJob = async (req, res) => {
     }
 
 };
+
+
+
+
+
+export const getMyApplications = async (req, res) => {
+
+    try {
+
+        // Only Job Seekers
+
+        if (req.user.role !== "jobseeker") {
+
+            return res.status(403).json({
+
+                success: false,
+
+                message: "Access denied"
+
+            });
+
+        }
+
+
+
+        const applications = await Application.find({
+
+            jobSeekerId: req.user.id
+
+        })
+
+        .populate({
+
+            path: "jobId",
+
+            select: `
+                jobTitle
+                location
+                workMode
+                employmentType
+                salaryMin
+                salaryMax
+                currency
+                deadline
+                status
+            `
+
+        })
+
+        .populate({
+
+            path: "employerId",
+
+            select: "companyName"
+
+        })
+
+        .sort({
+
+            createdAt: -1
+
+        });
+
+
+
+
+
+        return res.status(200).json({
+
+            success: true,
+
+            applications
+
+        });
+
+
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+        return res.status(500).json({
+
+            success: false,
+
+            message: "Internal server error"
+
+        });
+
+    }
+
+};

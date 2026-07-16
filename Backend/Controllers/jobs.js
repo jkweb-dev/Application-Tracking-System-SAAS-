@@ -1,5 +1,6 @@
 import Job from "../Models/jobs.js";
 import Employer from "../Models/employer.js";
+import Application from "../Models/Application.js";
 
 
 
@@ -337,6 +338,12 @@ export const deleteJob = async(req,res)=>{
         }
 
         await job.deleteOne();
+
+        await Application.deleteMany({
+
+    jobId: job._id
+
+});
 
         res.status(200).json({
 
