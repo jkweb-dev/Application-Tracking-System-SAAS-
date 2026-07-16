@@ -12,6 +12,7 @@ import getTeamMember from "./Routes/getTeam.js";
 import memberLogin from "./Routes/Team_MemberLogin.js";
 import getAlljobs from "./Routes/AllJobs.js";
 import jobSeekerProfile from "./Routes/JobSeekerProfile.js";
+import ApplicationSystem from "./Routes/Application.js";
 
 import express from "express";
 import dotenv from "dotenv";
@@ -58,6 +59,8 @@ app.use("/team" , memberLogin)
 app.use("/jobseeker" , getAlljobs)
 
 app.use("/jobseeker" , jobSeekerProfile)
+
+app.use("/jobseeker" , ApplicationSystem)
 
 
 

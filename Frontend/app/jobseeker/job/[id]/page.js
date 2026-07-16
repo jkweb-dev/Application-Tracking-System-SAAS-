@@ -27,6 +27,9 @@ export default function JobDetailsPage(){
     const jobId = params.id;
 
 
+    const [applying, setApplying] = useState(false);
+
+const [alreadyApplied, setAlreadyApplied] = useState(false);
 
     const [job,setJob] = useState(null);
 
@@ -247,6 +250,109 @@ export default function JobDetailsPage(){
     };
 
 
+    const handleApply = async (jobId) => {
+
+    try {
+
+        setApplying(true);
+
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+
+            toast.error("Please login first");
+
+            router.push("/");
+
+            return;
+
+        }
+
+        const response = await axios.post(
+
+            `http://localhost:5000/jobseeker/apply/${jobId}`,
+
+            {},
+
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+
+        );
+
+        toast.success(response.data.message);
+
+        setAlreadyApplied(true);
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+        if (!error.response) {
+
+            toast.error(
+                "Network error. Please check your internet connection."
+            );
+
+            return;
+
+        }
+
+        const status = error.response.status;
+
+        const message =
+            error.response.data?.message ||
+            "Something went wrong";
+
+        switch (status) {
+
+            case 400:
+                toast.error(message);
+                break;
+
+            case 401:
+                toast.error("Session expired. Please login again.");
+                localStorage.removeItem("token");
+                router.push("/");
+                break;
+
+            case 403:
+                toast.error("Access denied.");
+                break;
+
+            case 404:
+                toast.error(message);
+                break;
+
+            case 409:
+                toast.error(message);
+                setAlreadyApplied(true);
+                break;
+
+            case 500:
+                toast.error("Internal server error. Please try again later.");
+                break;
+
+            default:
+                toast.error(message);
+
+        }
+
+    }
+
+    finally {
+
+        setApplying(false);
+
+    }
+
+};
+
+
 
 
 
@@ -358,6 +464,12 @@ export default function JobDetailsPage(){
                         <ApplyCard
 
                             job={job}
+
+                            handleApply = {handleApply}
+
+                            applying = {applying}
+
+                            alreadyApplied = {alreadyApplied}
 
                         />
 

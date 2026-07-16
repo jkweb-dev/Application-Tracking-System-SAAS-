@@ -168,7 +168,7 @@ export const createProfile = async (req, res) => {
 
 
 export const getProfile = async (req, res) => {
-console.log("Route Hitted")
+
     try {
 
 

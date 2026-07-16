@@ -17,7 +17,13 @@ import {
 
 export default function ApplyCard({
 
-    job
+    job,
+
+    handleApply ,
+
+    applying ,
+
+    alreadyApplied
 
 }){
 
@@ -225,6 +231,9 @@ export default function ApplyCard({
 
             <button
 
+            onClick={() => handleApply(job._id)}
+    disabled={applying || alreadyApplied}
+
                 className="
                     mt-8
                     w-full
@@ -239,7 +248,11 @@ export default function ApplyCard({
 
             >
 
-                Apply Now
+                {applying
+        ? "Applying..."
+        : alreadyApplied
+        ? "Applied ✓"
+        : "Apply Now"}
 
             </button>
 
