@@ -303,7 +303,7 @@ export default function JobCard({
 
                             <p className="font-semibold text-gray-800">
 
-                                👥 0 Applicants
+                                👥{job.applicants}
 
                             </p>
 

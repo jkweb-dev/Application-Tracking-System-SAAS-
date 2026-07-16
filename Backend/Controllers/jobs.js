@@ -2,6 +2,7 @@ import Job from "../Models/jobs.js";
 import Employer from "../Models/employer.js";
 import Application from "../Models/Application.js";
 
+import mongoose from "mongoose";
 
 
 export const createJob = async (req,res)=>{
@@ -142,17 +143,47 @@ export const getEmployerJobs = async(req,res)=>{
 
     try{
 
-        const jobs = await Job.find({
+      const jobs = await Job.aggregate([
 
-            employerId:req.user.id
 
-        })
+    {
+        $match:{
+            employerId:new mongoose.Types.ObjectId(req.user.id)
+        }
+    },
 
-        .sort({
 
-            createdAt:-1
+    {
+        $lookup:{
+            from:"applications",
+            localField:"_id",
+            foreignField:"jobId",
+            as:"applications"
+        }
+    },
 
-        });
+
+    {
+        $addFields:{
+
+            applicants:{
+                $size:"$applications"
+            }
+
+        }
+    },
+
+
+    {
+        $project:{
+
+            applications:0
+
+        }
+    }
+
+
+]);
 
 
 

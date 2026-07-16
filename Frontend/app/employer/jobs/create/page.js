@@ -369,7 +369,7 @@ const validateForm = () => {
         if (response.status === 201 || 200) {
              toast.success(response.data.message);
 
-        console.log(response.data.job);
+        
         }
        
 
