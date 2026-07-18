@@ -13,6 +13,7 @@ import memberLogin from "./Routes/Team_MemberLogin.js";
 import getAlljobs from "./Routes/AllJobs.js";
 import jobSeekerProfile from "./Routes/JobSeekerProfile.js";
 import ApplicationSystem from "./Routes/Application.js";
+import router from "./Routes/Hiring_pipeline.js";
 
 import express from "express";
 import dotenv from "dotenv";
@@ -61,6 +62,8 @@ app.use("/jobseeker" , getAlljobs)
 app.use("/jobseeker" , jobSeekerProfile)
 
 app.use("/jobseeker" , ApplicationSystem)
+
+app.use("/employer" , router)
 
 
 

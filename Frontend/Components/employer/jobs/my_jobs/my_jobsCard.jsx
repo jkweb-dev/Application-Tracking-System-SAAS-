@@ -561,6 +561,51 @@ export default function JobCard({
 
                         </button>
 
+                        
+                        <button
+
+
+                            onClick={()=>
+
+
+                                router.push(
+
+                                    `/employer/Joobs/${job._id}/pipeline`
+
+                                )
+
+                            }
+
+
+
+                            className="
+                            
+                            px-4
+                            
+                            py-2
+                            
+                            rounded-xl
+                            
+                             bg-indigo-600
+                            
+                            text-white
+                            
+                            font-medium
+                            
+                            hover:bg-emerald-700
+                            
+                            transition
+                            
+                            "
+
+                        >
+
+                           Hiring Pipeline
+
+                        </button>
+
+
+
 
 
 
