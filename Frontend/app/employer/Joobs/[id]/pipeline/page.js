@@ -370,7 +370,7 @@ export default function HiringPipelinePage() {
 
     // Optimistic Update
 
-    /*setApplications((previous) =>
+    setApplications((previous) =>
 
         previous.map((application) =>
 
@@ -388,7 +388,7 @@ export default function HiringPipelinePage() {
 
         )
 
-    );*/
+    );
 
 
 

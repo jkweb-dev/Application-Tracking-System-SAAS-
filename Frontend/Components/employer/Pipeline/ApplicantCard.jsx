@@ -272,7 +272,7 @@ export default function ApplicantCard({
 
                 >
 
-                 applied
+               {application.status}
 
                 </span>
 
