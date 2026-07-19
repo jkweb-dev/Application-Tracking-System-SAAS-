@@ -13,7 +13,8 @@ import memberLogin from "./Routes/Team_MemberLogin.js";
 import getAlljobs from "./Routes/AllJobs.js";
 import jobSeekerProfile from "./Routes/JobSeekerProfile.js";
 import ApplicationSystem from "./Routes/Application.js";
-import router from "./Routes/Hiring_pipeline.js";
+import pipeline from "./Routes/Hiring_pipeline.js";
+import CandidateProfile from "./Routes/CandidateProfile.js";
 
 import express from "express";
 import dotenv from "dotenv";
@@ -63,7 +64,9 @@ app.use("/jobseeker" , jobSeekerProfile)
 
 app.use("/jobseeker" , ApplicationSystem)
 
-app.use("/employer" , router)
+app.use("/employer" , pipeline)
+
+app.use("/employer" , CandidateProfile)
 
 
 

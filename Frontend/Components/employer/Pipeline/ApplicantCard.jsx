@@ -73,7 +73,7 @@ export default function ApplicantCard({
 
                 router.push(
 
-                    `/employer/applications/${application._id}`
+                    `/employer/candidate/${profile._id}`
 
                 )
 
