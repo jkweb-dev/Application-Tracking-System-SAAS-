@@ -15,6 +15,7 @@ import jobSeekerProfile from "./Routes/JobSeekerProfile.js";
 import ApplicationSystem from "./Routes/Application.js";
 import pipeline from "./Routes/Hiring_pipeline.js";
 import CandidateProfile from "./Routes/CandidateProfile.js";
+import Analytics from "./Routes/Analytics.js";
 
 import express from "express";
 import dotenv from "dotenv";
@@ -67,6 +68,8 @@ app.use("/jobseeker" , ApplicationSystem)
 app.use("/employer" , pipeline)
 
 app.use("/employer" , CandidateProfile)
+
+app.use("/employer" , Analytics)
 
 
 
