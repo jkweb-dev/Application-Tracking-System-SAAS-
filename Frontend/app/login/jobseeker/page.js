@@ -556,7 +556,7 @@ setErrors({})
 
               <Link
 
-                href="/forgot-password"
+                href="/JobSeeker_Forgot_Password"
 
                 className="text-blue-600"
 

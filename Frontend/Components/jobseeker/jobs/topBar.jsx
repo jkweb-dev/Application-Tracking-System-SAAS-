@@ -238,7 +238,7 @@ export default function JobsTopBar(){
 
                     <Link
 
-                        href="/jobseeker/profile"
+                        href="/jobseeker/ProfileViewandEdit"
 
                         className="
 
@@ -288,29 +288,7 @@ export default function JobsTopBar(){
 
                 >
 
-                    <button
-
-                        className="
-
-                            rounded-xl
-
-                            p-2.5
-
-                            text-slate-500
-
-                            transition
-
-                            hover:bg-slate-100
-
-                            hover:text-blue-600
-
-                        "
-
-                    >
-
-                        <Bell size={20}/>
-
-                    </button>
+                    
 
 
 

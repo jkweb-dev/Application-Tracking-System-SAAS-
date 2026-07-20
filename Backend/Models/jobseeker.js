@@ -51,7 +51,23 @@ const jobSeekerSchema = new mongoose.Schema(
 
         default: "jobseeker"
 
-    }
+    } ,
+
+    resetPasswordToken:{
+
+    type:String,
+
+    default:null
+
+},
+
+resetPasswordExpire:{
+
+    type:Date,
+
+    default:null
+
+}
 
 
 },
