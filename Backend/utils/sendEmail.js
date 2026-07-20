@@ -42,9 +42,7 @@ export const sendEmail = async (
 
 ) => {
 
-     
-    console.log(process.env.EMAIL_USER)
-    console.log(process.env.EMAIL_PASS)
+    
 
     await transporter.sendMail({
 

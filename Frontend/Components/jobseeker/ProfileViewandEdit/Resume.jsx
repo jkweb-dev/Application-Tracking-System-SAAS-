@@ -230,7 +230,7 @@ export default function ResumeUpload({
                 <a
 
                     href={
-                    `http://localhost:5000/uploads/resumes/${resume.filename}`
+                    `http://localhost:5000/files/resume/${resume.filename}`
                     }
 
                     target="_blank"

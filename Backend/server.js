@@ -17,6 +17,8 @@ import pipeline from "./Routes/Hiring_pipeline.js";
 import CandidateProfile from "./Routes/CandidateProfile.js";
 import Analytics from "./Routes/Analytics.js";
 import Forgot_Password from "./Routes/JobSeeker_Forgot_Password.js";
+import fileRoute from "./Routes/fileController.js"
+
 
 import express from "express";
 import dotenv from "dotenv";
@@ -73,6 +75,8 @@ app.use("/employer" , CandidateProfile)
 app.use("/employer" , Analytics)
 
 app.use("/jobseeker" ,Forgot_Password)
+
+app.use("/files" ,fileRoute)
 
 
 

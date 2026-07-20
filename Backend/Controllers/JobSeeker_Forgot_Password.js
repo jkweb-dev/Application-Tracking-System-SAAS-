@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { sendEmail } from "../utils/sendEmail.js";
 
 export const forgotPassword = async (req, res) => {
-console.log("Route Hitted")
+
     try {
 
         const { email } = req.body;
