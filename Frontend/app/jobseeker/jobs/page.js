@@ -19,7 +19,21 @@ export default function JobsPage(){
 
     const router = useRouter();
 
+    const [filters, setFilters] = useState({
+
+    search: "",
+
+    location: "",
+
+    type: "",
+
+    experience: ""
+
+});
+
     const [jobs,setJobs] = useState([]);
+
+    const [filteredJobs, setFilteredJobs] = useState([]);
 
     const [loading,setLoading] = useState(true);
 
@@ -64,12 +78,16 @@ export default function JobsPage(){
             );
 
 
-console.log( response.data.jobs)
+
             setJobs(
 
                 response.data.jobs
 
             );
+
+           
+
+setFilteredJobs(response.data.jobs);
 
 
         }
@@ -217,6 +235,147 @@ console.log( response.data.jobs)
 
     };
 
+    const filterJobs = () => {
+
+    let result = [...jobs];
+
+
+
+    // Search
+
+    if (filters.search.trim()) {
+
+        const keyword = filters.search.toLowerCase();
+
+
+
+        result = result.filter((job) => {
+
+            const matchesTitle =
+
+                job.jobTitle
+                    ?.toLowerCase()
+                    .includes(keyword);
+
+
+
+            const matchesCompany =
+
+                job.companyName
+                    ?.toLowerCase()
+                    .includes(keyword);
+
+
+
+            const matchesDepartment =
+
+                job.department
+                    ?.toLowerCase()
+                    .includes(keyword);
+
+
+
+            const matchesSkills =
+
+                job.skills?.some((skill)=>
+
+                    skill
+                        .toLowerCase()
+                        .includes(keyword)
+
+                );
+
+
+
+            return (
+
+                matchesTitle ||
+
+                matchesCompany ||
+
+                matchesDepartment ||
+
+                matchesSkills
+
+            );
+
+        });
+
+    }
+
+
+
+    // Location
+
+    if(filters.location){
+
+        result = result.filter(
+
+            (job)=>
+
+                job.location===filters.location
+
+        );
+
+    }
+
+
+
+    // Employment Type
+
+    if(filters.type){
+
+        result = result.filter(
+
+            (job)=>
+
+                job.employmentType===filters.type
+
+        );
+
+    }
+
+
+
+    // Experience Level
+
+    if(filters.experience){
+
+        result = result.filter(
+
+            (job)=>
+
+                job.experienceLevel===filters.experience
+
+        );
+
+    }
+
+
+
+    setFilteredJobs(result);
+
+};
+
+
+const resetFilters = () => {
+
+    setFilters({
+
+        search: "",
+
+        location: "",
+
+        type: "",
+
+        experience: ""
+
+    });
+
+    setFilteredJobs(jobs);
+
+};
+
 
 
     return(
@@ -231,7 +390,16 @@ console.log( response.data.jobs)
             <JobsHero/>
 
 
-            <SearchFilters/>
+            <SearchFilters 
+            
+            filters={filters}
+            
+            setFilters={setFilters}
+
+            onSearch={filterJobs}
+
+            onReset={resetFilters}
+            />
 
 
             {
@@ -256,7 +424,7 @@ console.log( response.data.jobs)
 
                 <JobsGrid
 
-                    jobs={jobs}
+                    jobs={filteredJobs}
 
                 />
 

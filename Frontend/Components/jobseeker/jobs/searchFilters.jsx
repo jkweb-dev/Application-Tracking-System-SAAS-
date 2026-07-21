@@ -7,7 +7,29 @@ import {
     GraduationCap
 } from "lucide-react";
 
-export default function SearchFilters(){
+export default function SearchFilters({
+
+     filters,
+
+    setFilters ,
+
+    onSearch ,
+
+    onReset
+
+}){
+
+    const handleChange = (field,value)=>{
+
+    setFilters({
+
+        ...filters,
+
+        [field]:value
+
+    });
+
+};
 
     return(
 
@@ -54,6 +76,17 @@ export default function SearchFilters(){
 
                             placeholder="Search jobs, companies or skills..."
 
+                             value={filters.search}
+
+    onChange={(e)=>
+
+        handleChange(
+            "search",
+            e.target.value
+        )
+
+    }
+
                             className="
                                 w-full
                                 rounded-xl
@@ -90,6 +123,21 @@ export default function SearchFilters(){
 
                         <select
 
+                        value={filters.location}
+
+
+onChange={(e)=>
+
+    handleChange(
+
+        "location",
+
+        e.target.value
+
+    )
+
+}
+
                             className="
                                 w-full
                                 appearance-none
@@ -108,7 +156,7 @@ export default function SearchFilters(){
 
                         >
 
-                            <option>All Locations</option>
+                            <option value= "">All Locations</option>
 
                             <option>Lahore</option>
 
@@ -139,6 +187,21 @@ export default function SearchFilters(){
 
                         <select
 
+                        value={filters.type}
+
+
+onChange={(e)=>
+
+    handleChange(
+
+        "type",
+
+        e.target.value
+
+    )
+
+}
+
                             className="
                                 w-full
                                 appearance-none
@@ -157,15 +220,15 @@ export default function SearchFilters(){
 
                         >
 
-                            <option>All Job Types</option>
+                            <option value ="">All Job Types</option>
 
-                            <option>Full Time</option>
+                            <option value="Full Time">Full Time</option>
 
-                            <option>Part Time</option>
+                            <option value="Part Time">Part Time</option>
 
-                            <option>Internship</option>
+                            <option value="Internship">Internship</option>
 
-                            <option>Contract</option>
+                            <option value="Contract">Contract</option>
 
                         </select>
 
@@ -202,6 +265,21 @@ export default function SearchFilters(){
 
                         <select
 
+                        value={filters.experience}
+
+
+onChange={(e)=>
+
+    handleChange(
+
+        "experience",
+
+        e.target.value
+
+    )
+
+}
+
                             className="
                                 w-full
                                 appearance-none
@@ -220,19 +298,23 @@ export default function SearchFilters(){
 
                         >
 
-                            <option>Experience Level</option>
+                            <option value= "" >Experience Level</option>
 
-                            <option>Entry Level</option>
+                            <option value= "Fresh Graduate">Fresh Graduate</option>
 
-                            <option>Mid Level</option>
+                            <option value="1-2 Years">1-2 Years</option>
 
-                            <option>Senior Level</option>
+                            <option value="3-5 Years">3-5 Years</option>
+
+                            <option value="5+ Years">5+ Years</option>
 
                         </select>
 
                     </div>
 
                     <button
+
+                    onClick={onSearch}
 
                         className="
                             rounded-xl
@@ -252,6 +334,8 @@ export default function SearchFilters(){
                     </button>
 
                     <button
+
+                        onClick={onReset}
 
                         className="
                             rounded-xl
