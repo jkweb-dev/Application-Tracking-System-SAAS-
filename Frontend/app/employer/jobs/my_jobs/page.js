@@ -30,7 +30,7 @@ export default function MyJobsPage(){
 
     const router = useRouter();
 
-
+const [search, setSearch] = useState("");
 
 
     const [jobs,setJobs] = useState([]);
@@ -370,9 +370,19 @@ console.log(error)
 
 
 
+const filteredJobs = jobs.filter((job) => {
 
+    if (!search.trim()) {
 
+        return true;
 
+    }
+
+    return job.jobTitle
+        .toLowerCase()
+        .includes(search.toLowerCase().trim());
+
+});
 
     return (
 
@@ -423,6 +433,10 @@ console.log(error)
 
 
                 <JobFilters
+
+                search={search}
+
+    setSearch={setSearch}
 
                     totalJobs={jobs.length}
 
@@ -508,7 +522,7 @@ console.log(error)
 
                             {
 
-                                jobs.map((job)=>(
+                                filteredJobs.map((job)=>(
 
 
                                     <JobCard

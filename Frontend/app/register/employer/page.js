@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function RegisterEmployer() {
 
+  const router = useRouter()
     const validateForm = () => {
 
 const newErrors={};
@@ -180,7 +182,9 @@ confirmPassword: "",
 
 agree: false
 })
-            // router.push("/dashboard");
+         
+
+router.push("/employer/profile")
 
         }
 

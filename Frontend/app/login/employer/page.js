@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 export default function LoginEmployer() {
 
   // -------------------------
+  const router = useRouter()
   // STATE
   // -------------------------
   const [formData, setFormData] = useState({
@@ -80,6 +82,9 @@ export default function LoginEmployer() {
         });
 
         setErrors({});
+
+        router.push("/employer/profile")
+        
  // redirect later  // router.push("/dashboard");
       }
 
@@ -182,12 +187,7 @@ console.log(error)
               )}
             </div>
 
-            {/* OPTIONS */}
-            <div className="flex justify-end text-sm text-slate-600">
-              <a href="/forgot-password" className="text-blue-600">
-                Forgot password?
-              </a>
-            </div>
+           
 
             {/* BUTTON */}
             <button

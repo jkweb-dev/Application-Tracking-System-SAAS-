@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ResumeCard({
 
     profile
@@ -120,8 +122,13 @@ export default function ResumeCard({
 
 
 
-                <button
+                <Link
 
+ href={
+                    `http://localhost:5000/files/resume/${profile.resume.filename}`
+                    }
+
+                    target="_blank"
                     className="
                         rounded-xl
                         bg-indigo-600
@@ -138,7 +145,7 @@ export default function ResumeCard({
 
                     View
 
-                </button>
+                </Link>
 
 
             </div>

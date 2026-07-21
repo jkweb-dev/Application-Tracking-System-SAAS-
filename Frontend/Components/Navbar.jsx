@@ -66,9 +66,11 @@ export default function Navbar() {
 
             <div className="relative">
 
+              <Link href= "product">
+
               <button
 
-                onClick={() => toggleDropdown("products")}
+                
 
                 className="flex items-center gap-1 font-medium text-slate-700 hover:text-blue-600"
 
@@ -76,151 +78,40 @@ export default function Navbar() {
 
                 Products
 
-                <ChevronDown size={16}/>
+                
 
               </button>
+              </Link>
 
-
-              {
-
-                activeDropdown === "products"
-
-                &&
-
-                (
-
-                  <div className="absolute left-0 mt-4 w-80 rounded-2xl border border-slate-200 bg-white shadow-xl p-5">
-
-                    <h3 className="font-semibold mb-3">
-
-                      ATS System
-
-                    </h3>
-
-                    <div className="space-y-2 text-sm text-slate-600">
-
-                      <p>Pipeline Management</p>
-
-                      <p>Candidate Tracking</p>
-
-                      <p>Job Posting</p>
-
-                    </div>
-
-
-                    <hr className="my-4"/>
-
-
-                    <h3 className="font-semibold mb-3">
-
-                      Analytics
-
-                    </h3>
-
-
-                    <div className="space-y-2 text-sm text-slate-600">
-
-                      <p>Hiring Reports</p>
-
-                      <p>Dashboards</p>
-
-                    </div>
-
-                  </div>
-
-                )
-
-              }
 
             </div>
 
 
 
-            {/* Pricing */}
+            
 
             <div className="relative">
 
+              <Link href="/aboutus">
+
               <button
 
-                onClick={() => toggleDropdown("pricing")}
+               
 
                 className="flex items-center gap-1 font-medium text-slate-700 hover:text-blue-600"
 
               >
 
-                Pricing
+               About us
 
-                <ChevronDown size={16}/>
+              
 
               </button>
 
-
-              {
-
-                activeDropdown === "pricing"
-
-                &&
-
-                (
-
-                  <div className="absolute left-0 mt-4 w-72 rounded-2xl border bg-white shadow-xl p-5">
-
-                    <div>
-
-                      <h3 className="font-semibold">
-
-                        Starter
-
-                      </h3>
-
-                      <p className="text-sm text-slate-500">
-
-                        Free Plan
-
-                      </p>
-
-                    </div>
+              </Link>
 
 
-                    <div className="mt-4">
-
-                      <h3 className="font-semibold">
-
-                        Pro
-
-                      </h3>
-
-                      <p className="text-sm text-slate-500">
-
-                        $29/month
-
-                      </p>
-
-                    </div>
-
-
-                    <div className="mt-4">
-
-                      <h3 className="font-semibold">
-
-                        Enterprise
-
-                      </h3>
-
-                      <p className="text-sm text-slate-500">
-
-                        Custom Pricing
-
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                )
-
-              }
-
+              
             </div>
 
 
@@ -229,9 +120,10 @@ export default function Navbar() {
 
             <div className="relative">
 
+              <Link href="/resources">
+
               <button
 
-                onClick={() => toggleDropdown("resources")}
 
                 className="flex items-center gap-1 font-medium text-slate-700 hover:text-blue-600"
 
@@ -239,39 +131,13 @@ export default function Navbar() {
 
                 Resources
 
-                <ChevronDown size={16}/>
+               
 
               </button>
+              </Link>
 
 
-              {
-
-                activeDropdown === "resources"
-
-                &&
-
-                (
-
-                  <div className="absolute left-0 mt-4 w-64 rounded-2xl border bg-white shadow-xl p-5">
-
-                    <div className="space-y-3 text-sm">
-
-                      <p>Blog</p>
-
-                      <p>Documentation</p>
-
-                      <p>Help Center</p>
-
-                      <p>API Docs</p>
-
-                    </div>
-
-                  </div>
-
-                )
-
-              }
-
+            
             </div>
 
           </div>

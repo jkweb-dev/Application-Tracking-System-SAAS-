@@ -7,7 +7,7 @@ export const getEmployerAnalytics = async (req, res) => {
     try {
 
 
-        if (req.user.role !== "employer") {
+        if (req.user.role === "jobseeker") {
 
             return res.status(403).json({
 

@@ -1,6 +1,10 @@
 export default function JobFilters({
 
-    totalJobs
+  search ,
+
+  setSearch ,
+
+    totalJobs ,
 
 }){
 
@@ -115,6 +119,10 @@ export default function JobFilters({
 
                             type="text"
 
+                              value={search}
+
+    onChange={(e)=>setSearch(e.target.value)}
+
 
                             placeholder="Search by job title..."
 
@@ -166,124 +174,7 @@ export default function JobFilters({
 
 
 
-                {/* Status */}
-
-
-
-                <div
-
-                    className="
-                    
-                    w-full
-                    
-                    sm:w-auto
-                    
-                    "
-
-                >
-
-
-
-                    <label
-
-                        className="
-                        
-                        text-sm
-                        
-                        font-medium
-                        
-                        text-gray-600
-                        
-                        "
-
-                    >
-
-                        Filter Status
-
-                    </label>
-
-
-
-
-
-                    <select
-
-
-
-                        className="
-                        
-                        mt-2
-                        
-                        w-full
-                        
-                        sm:w-52
-                        
-                        px-5
-                        
-                        py-3.5
-                        
-                        rounded-2xl
-                        
-                        bg-white
-                        
-                        border
-                        
-                        border-slate-200
-                        
-                        outline-none
-                        
-                        focus:ring-2
-                        
-                        focus:ring-emerald-400
-                        
-                        transition
-                        
-                        text-gray-700
-                        
-                        "
-
-                    >
-
-
-
-                        <option>
-
-                            All Jobs
-
-                        </option>
-
-
-
-                        <option>
-
-                            Active
-
-                        </option>
-
-
-
-                        <option>
-
-                            Paused
-
-                        </option>
-
-
-
-                        <option>
-
-                            Closed
-
-                        </option>
-
-
-
-
-                    </select>
-
-
-
-                </div>
+               
 
 
 

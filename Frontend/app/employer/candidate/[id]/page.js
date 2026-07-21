@@ -158,16 +158,7 @@ console.log(response.data.profile)
 
 
 
-    const handleBack = () => {
-
-        router.push(
-
-            `/employer/jobs/${jobId}/pipeline`
-
-        );
-
-    };
-
+  
 
 
     useEffect(() => {
@@ -209,38 +200,9 @@ console.log(response.data.profile)
             >
 
 
-                {/* Back Button */}
+               
 
-                <button
-
-                    onClick={handleBack}
-
-                    className="
-                        mb-6
-                        flex
-                        items-center
-                        gap-2
-                        rounded-xl
-                        border
-                        border-slate-200
-                        bg-white
-                        px-5
-                        py-3
-                        text-sm
-                        font-medium
-                        text-slate-700
-                        transition
-                        hover:bg-slate-100
-                    "
-
-                >
-
-                    ← Back to Hiring Pipeline
-
-                </button>
-
-
-
+              
 
 
                 {/* Hero */}

@@ -17,15 +17,7 @@ export default function Sidebar({ open, setOpen }) {
 
     const menuItems = [
 
-        {
-            name: "Dashboard",
-            path: "/employer/dashboard"
-        },
-
-        {
-            name: "Applicants",
-            path: "/employer/applicants"
-        },
+      
 
         {
             name: "Analytics",

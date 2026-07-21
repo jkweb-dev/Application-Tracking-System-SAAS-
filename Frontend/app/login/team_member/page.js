@@ -3,10 +3,13 @@
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function LoginTeam_Member() {
 
-  // -------------------------
+  // -------------------
+  const router = useRouter()
+  // ------
   // STATE
   // -------------------------
   const [formData, setFormData] = useState({
@@ -80,7 +83,7 @@ export default function LoginTeam_Member() {
         });
 
         setErrors({});
- // redirect later  // router.push("/dashboard");
+ router.push("/employer/profile")
       }
 
     } catch (error) {
@@ -183,11 +186,7 @@ console.log(error)
             </div>
 
             {/* OPTIONS */}
-            <div className="flex justify-end text-sm text-slate-600">
-              <a href="/forgot-password" className="text-blue-600">
-                Forgot password?
-              </a>
-            </div>
+           
 
             {/* BUTTON */}
             <button

@@ -55,11 +55,14 @@ Get Started as Employer
 
 </Link>
 
+<Link href="/employer/jobs/my_jobs">
 <button className="bg-white border border-slate-200 text-slate-700 px-6 py-3 rounded-xl hover:bg-slate-100 transition">
+  
 
 Find Jobs
 
 </button>
+  </Link>
 
 </div>
 

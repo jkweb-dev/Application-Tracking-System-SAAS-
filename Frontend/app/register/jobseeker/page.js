@@ -4,9 +4,11 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function RegisterJobSeeker() {
 
+  const router = useRouter()
   const initialFormData = {
     firstName: "",
     lastName: "",
@@ -192,6 +194,8 @@ setErrors({})
         );
 
         setErrors({});
+
+        router.push("/jobseeker/jobs")
 
       }
 
